@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Nunito, sans-serif;
+    color: rgba(245, 245, 245, 0.687);
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100vh;
+}
+
+section {
+    text-align: center;
+}
+
+.choose-game-p {
+    padding-top: 20%;
+    padding-bottom: 5%;
+}
+
+.game-mode-buttons  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: .8em;
+}
+
+.game-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: .8em;
+    padding-top: 40%;
+}
+
+
+button {
+    padding: 5px 10px;
+    font-size: 2vw;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(245, 245, 245, 0.73);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.left-section,
+.right-section {
+    flex: 1;
+    padding-top: 10%;
+}
+
+.left-section {
+    padding-right: 10%;
+}
+
+.right-section {
+    padding-left: 10%;
+}
+
+.main-section {
+    flex: 0 0 40%; 
+    max-width: 40%; 
+    padding-top: 5%;
+}
+
+h1 {
+    margin: 0;
+    font-size: 4vw;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 3vw;
+}
+
+.spacer {
+    aspect-ratio: 1/2;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.layer1 {
+    background-image: url(./assets/human-waves.svg);
+}
+
+.layer2 {
+    background-image: url(./assets/machine-steps.svg);
+}
+
+.main-section {
+    background-color: #a150d7;
+}

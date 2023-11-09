@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock, Paper, Scissors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="main-container">
+        <section class="left-section spacer layer1">
+            <h1 class="left-title">human</h1>
+            <p>wins: <span id="human-score">0</span></p>
+        </section>
+        <section class="main-section">
+            <h1 class="main-title"> rock | paper | scissors</h1>
+                <p class="choose-game-p">choose your game</p>
+                <section class="game-mode-buttons">
+                    <button id="classic-button">classic</button>
+                    <button id="extreme-button">xxxtreme</button>
+                </section>
+                <section class="game-buttons">
+                    <button id="rock-button" style="display: none;">rock</button>
+                    <button id="paper-button" style="display: none;">paper</button>
+                    <button id="scissors-button" style="display: none;">scissors</button>
+                    <button id="alien-button" style="display: none;">alien</button>
+                    <button id="robot-button" style="display: none;">robot</button>
+                </section>
+        </section>
+        <section class="right-section spacer layer2">
+            <h1 class="right-title">machine</h1>
+            <p>wins: <span id="machine-score">0</span></p>
+        </section>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
