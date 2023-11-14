@@ -61,34 +61,34 @@ function showFighterButtons() {
 }
 
 
-// Data model functions
+// Data model functions for CLASSIC MODE
 
-function getRandomComputerChoice() {
+function getRandomMachineChoiceClassic() {
     var choices = ['rock', 'paper', 'scissors'];
     var randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
 
-function determineWinner(playerChoice, computerChoice) {
-    const winningMoves = {
+function determineWinnerClassic(playerChoice, machineChoice) {
+    var winningMoves = {
         rock: "scissors",
         paper: "rock",
-        scissors: "paper"
+        scissors: "paper",
     };
 
-    if (playerChoice === computerChoice) {
+    if (playerChoice === machineChoice) {
         return "draw";
-    } else if (winningMoves[playerChoice] === computerChoice) {
+    } else if (winningMoves[playerChoice] === machineChoice) {
         return humanPlayer;
     } else {
         return machinePlayer;
     }
 }
 
-function takeTurn(playerChoice) {
+function takeTurnClassic(playerChoice) {
 
-    var computerChoice = getRandomComputerChoice();
-    var winner = determineWinner(playerChoice, computerChoice);
+    var machineChoice = getRandomMachineChoiceClassic();
+    var winner = determineWinnerClassic(playerChoice, machineChoice);
 
     if (winner === "draw") {
         console.log("It's a draw!");
@@ -99,6 +99,48 @@ function takeTurn(playerChoice) {
     }
 
 }
+
+// Data Model for EXTREME mode..
+
+function getRandomMachineChoiceExtreme() {
+    var choices = ['rock', 'paper', 'scissors', 'robot', 'alien'];
+    var randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+}
+
+function determineWinnerExtreme(playerChoice, machineChoice) {
+    var winningMoves = {
+        rock: "scissors",
+        paper: "rock",
+        scissors: "paper",
+        robot: ["paper", "alien"],
+        alien: ["scissors", "rock"],
+    };
+
+    if (playerChoice === machineChoice) {
+        return "draw";
+    } else if (winningMoves[playerChoice].includes(machineChoice)) {
+        return humanPlayer;
+    } else {
+        return machinePlayer;
+    }
+}
+
+function takeTurnExtreme(playerChoice) {
+
+    var machineChoice = getRandomMachineChoiceExtreme();
+    var winner = determineWinnerExtreme(playerChoice, machineChoice);
+
+    if (winner === "draw") {
+        console.log("It's a draw!");
+    } else {
+        winner.wins++; 
+        updateScores(); 
+        console.log(`${winner.name} wins!`);
+    }
+
+}
+
 
 // Event listeners
 
@@ -113,14 +155,22 @@ extremeButton.addEventListener('click', function () {
 });
 
 rockButton.addEventListener('click', function () {
-    takeTurn('rock');
+    takeTurnClassic('rock');
 });
 
 paperButton.addEventListener('click', function () {
-    takeTurn('paper');
+    takeTurnClassic('paper');
 });
 
 scissorsButton.addEventListener('click', function () {
-    takeTurn('scissors');
+    takeTurnClassic('scissors');
+});
+
+robotButton.addEventListener('click', function () {
+    takeTurnExtreme('robot');
+});
+
+alienButton.addEventListener('click', function () {
+    takeTurnExtreme('alien');
 });
 
