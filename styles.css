@@ -21,27 +21,31 @@ section {
     padding-bottom: 5%;
 }
 
-.game-mode-buttons  {
+.game-mode-buttons-section, .rules  {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    width: 100%;
     font-size: .8em;
     padding: 5px;
 }
 
-.fighter-buttons-section {
+.fighter-buttons-section  {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    width: 100%;
     padding: 5px;
+    margin-bottom: 40px;
 }
 
 .rules {
-    font-size: h;
+    font-size: 30px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     padding: 5px;
+    margin-left: 25px;
 }
 
 button {
@@ -90,6 +94,16 @@ p {
     font-size: 3vw;
 }
 
+.message-box {
+    margin-top: 50px;
+    width: 50%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(245, 245, 245, 0.73);
+    border: none;
+    border-radius: 5px;
+}
+
 .spacer {
     aspect-ratio: 1/2;
     width: 100%;
@@ -107,5 +121,8 @@ p {
 }
 
 .main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #a150d7;
 }

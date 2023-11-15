@@ -1,6 +1,8 @@
-// Variables
 var classicButton = document.getElementById('classic-button');
 var extremeButton = document.getElementById('extreme-button');
+var goBackButton = document.getElementById('back-button');
+var fighterButtonsSection = document.querySelector('.fighter-buttons-section');
+var gameModeButtonsSection = document.querySelector('.game-mode-buttons-section');
 var chooseGameTitle = document.querySelector('.choose-game-p')
 var chooseFighterTitle = document.querySelector('.choose-fighter-p')
 var rockButton = document.getElementById('rock-button');
@@ -11,7 +13,6 @@ var robotButton = document.getElementById('robot-button');
 var rules = document.querySelector('.rules')
 
 // Game setup 
-
 function createPlayer(name, token) {
     return {
         name: name,
@@ -20,7 +21,6 @@ function createPlayer(name, token) {
     };
 }
 
-
 function createGame(player1, player2) {
     return {
         player1: player1,
@@ -28,41 +28,13 @@ function createGame(player1, player2) {
     };
 }
 
-var humanPlayer = createPlayer('Human', '👩🏻');
-var machinePlayer = createPlayer('Machine', '🤖');
+var humanPlayer = createPlayer('human', '👩🏻');
+var machinePlayer = createPlayer('machine', '🤖');
 var game = createGame(humanPlayer, machinePlayer);
 
-// DOM manipulation... hold off on this
-
-function showElement(element) {
-    element.style.display = 'inline-block';
-}
-
-function hideElement(element) {
-    element.style.display = 'none';
-}
-
-function updateScores() {
-    document.getElementById('human-score').innerText = game.player1.wins;
-    document.getElementById('machine-score').innerText = game.player2.wins;
-}
-
-function showFighterButtons() {
-    showElement(rockButton);
-    showElement(paperButton);
-    showElement(scissorsButton);
-    showElement(chooseFighterTitle);
-    hideElement(alienButton);
-    hideElement(robotButton);
-    hideElement(rules);
-    hideElement(classicButton);
-    hideElement(extremeButton);
-    hideElement(chooseGameTitle);
-}
 
 
 // Data model functions for CLASSIC MODE
-
 function getRandomMachineChoiceClassic() {
     var choices = ['rock', 'paper', 'scissors'];
     var randomIndex = Math.floor(Math.random() * choices.length);
@@ -75,7 +47,6 @@ function determineWinnerClassic(playerChoice, machineChoice) {
         paper: "rock",
         scissors: "paper",
     };
-
     if (playerChoice === machineChoice) {
         return "draw";
     } else if (winningMoves[playerChoice] === machineChoice) {
@@ -86,22 +57,12 @@ function determineWinnerClassic(playerChoice, machineChoice) {
 }
 
 function takeTurnClassic(playerChoice) {
-
     var machineChoice = getRandomMachineChoiceClassic();
     var winner = determineWinnerClassic(playerChoice, machineChoice);
-
-    if (winner === "draw") {
-        console.log("It's a draw!");
-    } else {
-        winner.wins++; 
-        updateScores(); 
-        console.log(`${winner.name} wins!`);
-    }
-
+    updateScores(winner);
 }
 
 // Data Model for EXTREME mode..
-
 function getRandomMachineChoiceExtreme() {
     var choices = ['rock', 'paper', 'scissors', 'robot', 'alien'];
     var randomIndex = Math.floor(Math.random() * choices.length);
@@ -116,7 +77,7 @@ function determineWinnerExtreme(playerChoice, machineChoice) {
         robot: ["paper", "alien"],
         alien: ["scissors", "rock"],
     };
-
+    
     if (playerChoice === machineChoice) {
         return "draw";
     } else if (winningMoves[playerChoice].includes(machineChoice)) {
@@ -127,21 +88,78 @@ function determineWinnerExtreme(playerChoice, machineChoice) {
 }
 
 function takeTurnExtreme(playerChoice) {
-
     var machineChoice = getRandomMachineChoiceExtreme();
     var winner = determineWinnerExtreme(playerChoice, machineChoice);
-
-    if (winner === "draw") {
-        console.log("It's a draw!");
-    } else {
-        winner.wins++; 
-        updateScores(); 
-        console.log(`${winner.name} wins!`);
-    }
-
+    updateScores(winner);
 }
 
+function showElement(element) {
+    element.style.display = 'flex';
+}
 
+function hideElement(element) {
+    element.style.display = 'none';
+}
+
+// Update scores in the DOM
+function updateScores(winner) {
+    if (winner === 'draw') {
+        displayMessage("it's a draw!");
+    } else {
+        if (winner) {
+            winner.wins++;
+        }
+        document.getElementById('human-score').innerText = game.player1.wins;
+        document.getElementById('machine-score').innerText = game.player2.wins;
+        displayMessage(winner ? `${winner.name} wins!` : '');
+    }
+}
+
+// Display the pop up winner message in the DOM
+function displayMessage(message) {
+    var messageBox = document.createElement('div');
+    messageBox.classList.add('message-box');
+    
+    var messageElement = document.createElement('p');
+    messageElement.textContent = message;
+    
+    var closeButton = document.createElement('button');
+    closeButton.classList = 'button';
+    closeButton.textContent = '🔙';
+    closeButton.addEventListener('click', function () {
+        messageBox.remove();
+        showElement(chooseFighterTitle);
+        showElement(fighterButtonsSection);
+        showElement(goBackButton);
+    });
+    
+    messageBox.appendChild(messageElement);
+    messageBox.appendChild(closeButton);
+    
+    document.querySelector('.main-section').appendChild(messageBox);
+    
+    hideElement(chooseFighterTitle);
+    hideElement(fighterButtonsSection);
+    hideElement(goBackButton);
+}
+
+// to show fighter buttons
+function showFighterButtons() {
+    showElement(rockButton);
+    showElement(paperButton);
+    showElement(scissorsButton);
+    showElement(chooseFighterTitle);
+    showElement(fighterButtonsSection);
+    showElement(goBackButton);
+    hideElement(alienButton);
+    hideElement(robotButton);
+    hideElement(rules);
+    hideElement(classicButton);
+    hideElement(extremeButton);
+    hideElement(chooseGameTitle);
+    hideElement(gameModeButtonsSection);
+
+}
 // Event listeners
 
 classicButton.addEventListener('click', function () {
@@ -174,3 +192,13 @@ alienButton.addEventListener('click', function () {
     takeTurnExtreme('alien');
 });
 
+goBackButton.addEventListener('click', function () {
+    showElement(chooseGameTitle);
+    showElement(gameModeButtonsSection);
+    showElement(classicButton);
+    showElement(extremeButton);
+    showElement(rules);
+    hideElement(chooseFighterTitle);
+    hideElement(fighterButtonsSection);
+    hideElement(goBackButton);
+});
