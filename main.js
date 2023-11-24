@@ -162,37 +162,25 @@ showFighterButtons = () => {
 }
 // Event listeners
 
-classicButton.addEventListener('click', function () {
-    showFighterButtons();
-});
+classicButton.addEventListener('click', () => showFighterButtons())
 
-extremeButton.addEventListener('click', function () {
+extremeButton.addEventListener('click', () => {
     showFighterButtons();
     showElement(alienButton);
     showElement(robotButton);
 });
 
-rockButton.addEventListener('click', function () {
-    takeTurnClassic('rock');
-});
+rockButton.addEventListener('click', () => takeTurnClassic('rock'))
 
-paperButton.addEventListener('click', function () {
-    takeTurnClassic('paper');
-});
+paperButton.addEventListener('click', () => takeTurnClassic('paper'))
 
-scissorsButton.addEventListener('click', function () {
-    takeTurnClassic('scissors');
-});
+scissorsButton.addEventListener('click', () => takeTurnClassic('scissors'))
 
-robotButton.addEventListener('click', function () {
-    takeTurnExtreme('robot');
-});
+robotButton.addEventListener('click', () => takeTurnExtreme('robot'))
 
-alienButton.addEventListener('click', function () {
-    takeTurnExtreme('alien');
-});
+alienButton.addEventListener('click', () => takeTurnExtreme('alien'))
 
-goBackButton.addEventListener('click', function () {
+goBackButton.addEventListener('click', () => {
     showElement(chooseGameTitle);
     showElement(gameModeButtonsSection);
     showElement(classicButton);
@@ -201,4 +189,4 @@ goBackButton.addEventListener('click', function () {
     hideElement(chooseFighterTitle);
     hideElement(fighterButtonsSection);
     hideElement(goBackButton);
-});
+});  
