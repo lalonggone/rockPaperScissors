@@ -13,7 +13,7 @@ var robotButton = document.getElementById('robot-button');
 var rules = document.querySelector('.rules')
 
 // Game setup 
-function createPlayer(name, token) {
+createPlayer = (name, token) => {
     return {
         name: name,
         token: token,
@@ -21,7 +21,7 @@ function createPlayer(name, token) {
     };
 }
 
-function createGame(player1, player2) {
+createGame = (player1, player2) => {
     return {
         player1: player1,
         player2: player2,
@@ -35,13 +35,13 @@ var game = createGame(humanPlayer, machinePlayer);
 
 
 // Data model functions for CLASSIC MODE
-function getRandomMachineChoiceClassic() {
+getRandomMachineChoiceClassic = () => {
     var choices = ['rock', 'paper', 'scissors'];
     var randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
 
-function determineWinnerClassic(playerChoice, machineChoice) {
+determineWinnerClassic = (playerChoice, machineChoice) => {
     var winningMoves = {
         rock: "scissors",
         paper: "rock",
@@ -56,20 +56,20 @@ function determineWinnerClassic(playerChoice, machineChoice) {
     }
 }
 
-function takeTurnClassic(playerChoice) {
+takeTurnClassic = (playerChoice) => {
     var machineChoice = getRandomMachineChoiceClassic();
     var winner = determineWinnerClassic(playerChoice, machineChoice);
     updateScores(winner);
 }
 
 // Data Model for EXTREME mode..
-function getRandomMachineChoiceExtreme() {
+getRandomMachineChoiceExtreme = () => {
     var choices = ['rock', 'paper', 'scissors', 'robot', 'alien'];
     var randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
 
-function determineWinnerExtreme(playerChoice, machineChoice) {
+determineWinnerExtreme = (playerChoice, machineChoice) => {
     var winningMoves = {
         rock: "scissors",
         paper: "rock",
@@ -87,22 +87,22 @@ function determineWinnerExtreme(playerChoice, machineChoice) {
     }
 }
 
-function takeTurnExtreme(playerChoice) {
+takeTurnExtreme = (playerChoice) => {
     var machineChoice = getRandomMachineChoiceExtreme();
     var winner = determineWinnerExtreme(playerChoice, machineChoice);
     updateScores(winner);
 }
 
-function showElement(element) {
+showElement = (element) => {
     element.style.display = 'flex';
 }
 
-function hideElement(element) {
+hideElement = (element) => {
     element.style.display = 'none';
 }
 
 // Update scores in the DOM
-function updateScores(winner) {
+updateScores = (winner) => {
     if (winner === 'draw') {
         displayMessage("it's a draw!");
     } else {
@@ -116,7 +116,7 @@ function updateScores(winner) {
 }
 
 // Display the pop up winner message in the DOM
-function displayMessage(message) {
+displayMessage = (message) => {
     var messageBox = document.createElement('div');
     messageBox.classList.add('message-box');
     
@@ -144,7 +144,7 @@ function displayMessage(message) {
 }
 
 // to show fighter buttons
-function showFighterButtons() {
+showFighterButtons = () => {
     showElement(rockButton);
     showElement(paperButton);
     showElement(scissorsButton);
